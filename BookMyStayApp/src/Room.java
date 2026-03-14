@@ -1,38 +1,26 @@
 /**
- * ==========================================================
+ * ======================================================
  * CLASS - Room
- * ==========================================================
+ * ======================================================
  *
- * Description:
- * Represents a hotel room type and its characteristics.
+ * Represents a generic room in the hotel.
  *
- * This class contains only room properties such as
- * number of beds, room size, and price per night.
- *
- * Inventory availability is NOT stored here.
- *
- * @version 3.0
+ * @version 4.0
  */
 
 public class Room {
 
-    private String type;
     private int beds;
     private int size;
     private double pricePerNight;
 
     /**
-     * Constructor
+     * Constructor for Room
      */
-    public Room(String type, int beds, int size, double pricePerNight) {
-        this.type = type;
+    public Room(int beds, int size, double pricePerNight) {
         this.beds = beds;
         this.size = size;
         this.pricePerNight = pricePerNight;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public int getBeds() {
