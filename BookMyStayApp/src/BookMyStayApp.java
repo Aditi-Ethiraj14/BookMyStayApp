@@ -1,22 +1,19 @@
-import java.util.Map;
-
 /**
  * ==========================================================
- * MAIN CLASS - UseCase3InventorySetup
+ * MAIN CLASS - UseCase4RoomSearch
  * ==========================================================
  *
- * Use Case 3: Centralized Room Inventory Management
+ * Use Case 4: Room Search & Availability Check
  *
  * Description:
- * This class demonstrates how room availability
- * is managed using a centralized inventory.
+ * This class demonstrates how guests
+ * can view available rooms without
+ * modifying inventory data.
  *
- * Room objects are used to retrieve pricing
- * and room characteristics.
+ * The system enforces read-only access
+ * by design and usage discipline.
  *
- * No booking or search logic is introduced here.
- *
- * @version 3.1
+ * @version 4.0
  */
 
 public class BookMyStayApp {
@@ -26,36 +23,26 @@ public class BookMyStayApp {
      *
      * @param args Command-line arguments
      */
+
     public static void main(String[] args) {
 
-        // Create Room objects
-        Room singleRoom = new Room("Single Room", 1, 250, 1500.0);
-        Room doubleRoom = new Room("Double Room", 2, 400, 2500.0);
-        Room suiteRoom = new Room("Suite Room", 3, 750, 5000.0);
+        // Create room objects using subclasses
+        SingleRoom singleRoom = new SingleRoom();
+        DoubleRoom doubleRoom = new DoubleRoom();
+        SuiteRoom suiteRoom = new SuiteRoom();
 
         // Initialize inventory
         RoomInventory inventory = new RoomInventory();
 
-        // Get availability map
-        Map<String, Integer> availability = inventory.getRoomAvailability();
+        // Create search service
+        RoomSearchService searchService = new RoomSearchService();
 
-        System.out.println("Hotel Room Inventory Status\n");
-
-        displayRoom(singleRoom, availability.get(singleRoom.getType()));
-        displayRoom(doubleRoom, availability.get(doubleRoom.getType()));
-        displayRoom(suiteRoom, availability.get(suiteRoom.getType()));
-    }
-
-    /**
-     * Displays room details and availability.
-     */
-    private static void displayRoom(Room room, int availableRooms) {
-
-        System.out.println(room.getType() + ":");
-        System.out.println("Beds: " + room.getBeds());
-        System.out.println("Size: " + room.getSize() + " sqft");
-        System.out.println("Price per night: " + room.getPricePerNight());
-        System.out.println("Available Rooms: " + availableRooms);
-        System.out.println();
+        // Perform room search
+        searchService.searchAvailableRooms(
+                inventory,
+                singleRoom,
+                doubleRoom,
+                suiteRoom
+        );
     }
 }
