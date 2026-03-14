@@ -1,50 +1,49 @@
 /**
- * ======================================================
- * ABSTRACT CLASS - Room
- * ======================================================
- *
- * Use Case 2: Basic Room Types & Static Availability
+ * ==========================================================
+ * CLASS - Room
+ * ==========================================================
  *
  * Description:
- * This abstract class represents a generic hotel room.
+ * Represents a hotel room type and its characteristics.
  *
- * It models attributes that are intrinsic to a room type
- * and remain constant regardless of availability.
+ * This class contains only room properties such as
+ * number of beds, room size, and price per night.
  *
- * Inventory-related concerns are intentionally excluded.
+ * Inventory availability is NOT stored here.
  *
- * @version 2.1
+ * @version 3.0
  */
 
-public abstract class Room {
+public class Room {
 
-    /** Number of beds available in the room. */
-    protected int numberOfBeds;
-
-    /** Total size of the room in square feet. */
-    protected int squareFeet;
-
-    /** Price charged per night for this room type. */
-    protected double pricePerNight;
+    private String type;
+    private int beds;
+    private int size;
+    private double pricePerNight;
 
     /**
-     * Constructor used by child classes to
-     * initialize common room attributes.
-     *
-     * @param numberOfBeds number of beds in the room
-     * @param squareFeet total room size
-     * @param pricePerNight cost per night
+     * Constructor
      */
-    public Room(int numberOfBeds, int squareFeet, double pricePerNight) {
-        this.numberOfBeds = numberOfBeds;
-        this.squareFeet = squareFeet;
+    public Room(String type, int beds, int size, double pricePerNight) {
+        this.type = type;
+        this.beds = beds;
+        this.size = size;
         this.pricePerNight = pricePerNight;
     }
 
-    /** Displays room details. */
-    public void displayRoomDetails() {
-        System.out.println("Beds: " + numberOfBeds);
-        System.out.println("Size: " + squareFeet + " sqft");
-        System.out.println("Price per night: " + pricePerNight);
+    public String getType() {
+        return type;
+    }
+
+    public int getBeds() {
+        return beds;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public double getPricePerNight() {
+        return pricePerNight;
     }
 }
